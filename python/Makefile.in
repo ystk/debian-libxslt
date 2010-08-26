@@ -68,10 +68,11 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pythondir)"
 LTLIBRARIES = $(python_LTLIBRARIES)
 @WITH_PYTHON_TRUE@libxsltmod_la_DEPENDENCIES = $(mylibs)
-am__libxsltmod_la_SOURCES_DIST = libxslt.c types.c libxslt-py.c
-@WITH_PYTHON_TRUE@am_libxsltmod_la_OBJECTS = libxslt.lo types.lo \
-@WITH_PYTHON_TRUE@	libxslt-py.lo
-libxsltmod_la_OBJECTS = $(am_libxsltmod_la_OBJECTS)
+am__libxsltmod_la_SOURCES_DIST = $(srcdir)/libxslt.c $(srcdir)/types.c
+@WITH_PYTHON_TRUE@am_libxsltmod_la_OBJECTS = libxslt.lo types.lo
+@WITH_PYTHON_TRUE@nodist_libxsltmod_la_OBJECTS = libxslt-py.lo
+libxsltmod_la_OBJECTS = $(am_libxsltmod_la_OBJECTS) \
+	$(nodist_libxsltmod_la_OBJECTS)
 libxsltmod_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libxsltmod_la_LDFLAGS) $(LDFLAGS) -o $@
@@ -89,7 +90,7 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libxsltmod_la_SOURCES)
+SOURCES = $(libxsltmod_la_SOURCES) $(nodist_libxsltmod_la_SOURCES)
 DIST_SOURCES = $(am__libxsltmod_la_SOURCES_DIST)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
@@ -199,6 +200,7 @@ LIBXSLT_VERSION_NUMBER = @LIBXSLT_VERSION_NUMBER@
 LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
+MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
 MV = @MV@
@@ -214,6 +216,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PERL = @PERL@
@@ -335,22 +338,23 @@ libxsltmod_la_LDFLAGS = $(WIN32_EXTRA_LDFLAGS) -module -avoid-version
 @WITH_PYTHON_TRUE@	$(top_builddir)/libexslt/libexslt.la
 
 @WITH_PYTHON_TRUE@python_LTLIBRARIES = libxsltmod.la
-@WITH_PYTHON_TRUE@libxsltmod_la_SOURCES = libxslt.c types.c libxslt-py.c
+@WITH_PYTHON_TRUE@libxsltmod_la_SOURCES = $(srcdir)/libxslt.c $(srcdir)/types.c
+@WITH_PYTHON_TRUE@nodist_libxsltmod_la_SOURCES = libxslt-py.c
 @WITH_PYTHON_TRUE@libxsltmod_la_LIBADD = $(mylibs) 
 @WITH_PYTHON_TRUE@GENERATE = generator.py
 @WITH_PYTHON_TRUE@API_DESC = $(top_srcdir)/doc/libxslt-api.xml $(srcdir)/libxslt-python-api.xml
-@WITH_PYTHON_TRUE@GENERATED = $(srcdir)/libxsltclass.py \
-@WITH_PYTHON_TRUE@           $(srcdir)/libxslt-export.c \
-@WITH_PYTHON_TRUE@	   $(srcdir)/libxslt-py.c \
-@WITH_PYTHON_TRUE@	   $(srcdir)/libxslt-py.h \
-@WITH_PYTHON_TRUE@	   $(srcdir)/libxsltclass.txt
+@WITH_PYTHON_TRUE@GENERATED = libxsltclass.py \
+@WITH_PYTHON_TRUE@           libxslt-export.c \
+@WITH_PYTHON_TRUE@           libxslt-py.c \
+@WITH_PYTHON_TRUE@           libxslt-py.h \
+@WITH_PYTHON_TRUE@           libxsltclass.txt
 
 CLEANFILES = $(GENERATED) *.o libxslt.so *.pyc libxslt.py gen_prog
 all: all-recursive
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -375,9 +379,9 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
-$(top_srcdir)/configure:  $(am__configure_deps)
+$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
+$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 install-pythonLTLIBRARIES: $(python_LTLIBRARIES)
@@ -444,6 +448,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libxslt.lo: $(srcdir)/libxslt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libxslt.lo -MD -MP -MF $(DEPDIR)/libxslt.Tpo -c -o libxslt.lo `test -f '$(srcdir)/libxslt.c' || echo '$(srcdir)/'`$(srcdir)/libxslt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libxslt.Tpo $(DEPDIR)/libxslt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(srcdir)/libxslt.c' object='libxslt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libxslt.lo `test -f '$(srcdir)/libxslt.c' || echo '$(srcdir)/'`$(srcdir)/libxslt.c
+
+types.lo: $(srcdir)/types.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT types.lo -MD -MP -MF $(DEPDIR)/types.Tpo -c -o types.lo `test -f '$(srcdir)/types.c' || echo '$(srcdir)/'`$(srcdir)/types.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/types.Tpo $(DEPDIR)/types.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(srcdir)/types.c' object='types.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o types.lo `test -f '$(srcdir)/types.c' || echo '$(srcdir)/'`$(srcdir)/types.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -774,8 +792,8 @@ uninstall-am: uninstall-pythonLTLIBRARIES
 
 @WITH_PYTHON_TRUE@all-local: libxslt.py
 
-@WITH_PYTHON_TRUE@libxslt.py: $(srcdir)/libxsl.py $(srcdir)/libxsltclass.py
-@WITH_PYTHON_TRUE@	cat $(srcdir)/libxsl.py $(srcdir)/libxsltclass.py > libxslt.py
+@WITH_PYTHON_TRUE@libxslt.py: $(srcdir)/libxsl.py libxsltclass.py
+@WITH_PYTHON_TRUE@	cat $(srcdir)/libxsl.py libxsltclass.py > libxslt.py
 
 @WITH_PYTHON_TRUE@install-data-local:
 @WITH_PYTHON_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pythondir)
@@ -787,7 +805,7 @@ uninstall-am: uninstall-pythonLTLIBRARIES
 @WITH_PYTHON_TRUE@$(GENERATED): gen_prog
 
 @WITH_PYTHON_TRUE@gen_prog:  $(srcdir)/$(GENERATE) $(API_DESC)
-@WITH_PYTHON_TRUE@	cd $(srcdir) && $(PYTHON) $(GENERATE)
+@WITH_PYTHON_TRUE@	$(PYTHON) $(srcdir)/$(GENERATE) $(srcdir)
 @WITH_PYTHON_TRUE@	touch gen_prog
 
 @WITH_PYTHON_TRUE@$(libxsltmod_la_OBJECTS): $(GENERATED)

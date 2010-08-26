@@ -1,0 +1,94 @@
+#!/usr/bin/make -f
+
+# The versions of python currently supported
+PYVERS=$(shell pyversions -s)
+# The current default version of python
+PYVER=$(shell pyversions -d)
+
+CONFIGURE_FLAGS := CC="gcc -Wl,--as-needed" --cache-file="$(CURDIR)/build/config.cache"
+
+TARGETS := main $(PYVERS) $(PYVERS:%=%-dbg)
+
+override_dh_auto_configure: $(TARGETS:%=configure-%)
+
+configure-%:
+	dh_auto_configure --builddirectory=build/$* -- $(CONFIGURE_FLAGS)
+
+configure-main: CONFIGURE_FLAGS += --without-python
+configure-python%: CONFIGURE_FLAGS += --with-python=/usr/bin/$*
+
+override_dh_auto_build: $(TARGETS:%=build-%)
+
+build-%: BUILD_DIR=build/$*
+build-%:
+	$(if $(filter $(BUILD_DIR),build/$*),,[ -d $(BUILD_DIR) ] || mv build/$*/python $(BUILD_DIR))
+	dh_auto_build --builddirectory=$(BUILD_DIR) -- $(BUILD_FLAGS)
+
+build-python%: BUILD_DIR=build/main/$*
+build-python%-dbg: BUILD_FLAGS = PYTHON_INCLUDES=/usr/include/$(*:-dbg=_d) LDFLAGS="-L$(CURDIR)/debian/tmp/usr/lib" CFLAGS="-Wall -g -O0"
+
+override_dh_auto_clean:
+	rm -rf build debian/tmp-dbg
+	
+	-test -r /usr/share/misc/config.sub && \
+	cp -f /usr/share/misc/config.sub config.sub
+	-test -r /usr/share/misc/config.guess && \
+	cp -f /usr/share/misc/config.guess config.guess
+
+override_dh_auto_install: $(TARGETS:%=install-%)
+
+install-main:
+	dh_auto_install --builddirectory=build/main
+
+	# Properly install documentation in /usr/share/doc/libxslt1-dev
+	install -d debian/tmp/usr/share/doc/libxslt1-dev/EXSLT
+	install -m 644 \
+		doc/*.html \
+		doc/*.gif \
+		doc/libxslt-*.xml debian/tmp/usr/share/doc/libxslt1-dev
+	install -m 644 \
+		doc/EXSLT/*.html \
+		doc/EXSLT/libexslt-*.xml debian/tmp/usr/share/doc/libxslt1-dev
+	cp -a \
+		doc/html \
+		doc/tutorial \
+		doc/tutorial2 debian/tmp/usr/share/doc/libxslt1-dev
+	cp -a \
+		doc/EXSLT/html debian/tmp/usr/share/doc/libxslt1-dev/EXSLT
+	sed -i "/dependency_libs/ s/'.*'/''/" debian/tmp/usr/lib/libexslt.la
+
+install-python%-dbg:
+	$(MAKE) -C build/main/python$*-dbg DESTDIR=$(CURDIR)/debian/tmp-dbg install-pythonLTLIBRARIES
+	prename 's/(?<!_d)\.so$$/_d.so/' debian/tmp-dbg/usr/lib/python$*/*-packages/*.so
+
+install-python%:
+	dh_auto_install --builddirectory=build/main/python$*
+
+override_dh_installdocs:
+	dh_installdocs -a -A AUTHORS FEATURES NEWS README TODO
+
+override_dh_installchangelogs:
+	dh_installchangelogs -a ChangeLog
+
+override_dh_install:
+	dh_install -Npython-libxslt1-dbg
+	dh_install -ppython-libxslt1-dbg --sourcedir=debian/tmp-dbg
+
+override_dh_strip:
+	dh_strip -a --dbg-package=libxslt1-dbg -Npython-libxslt1 -Npython-libxslt1-dbg
+	dh_strip -ppython-libxslt1 --dbg-package=python-libxslt1-dbg
+	$(foreach python, $(filter-out $(PYVER), $(PYVERS)),\
+		cd $(CURDIR)/debian/python-libxslt1/usr/lib/pyshared; \
+		if diff $(python)/libxsltmod.so $(PYVER)/libxsltmod.so > /dev/null 2>&1; then \
+			rm -f $(python)/libxsltmod.so; \
+			ln -s ../$(PYVER)/libxsltmod.so $(python)/libxsltmod.so; \
+		fi;)
+
+override_dh_compress:
+	dh_compress -a -Xexamples/
+
+override_dh_makeshlibs:
+	dh_makeshlibs -a -V 'libxslt1.1 (>= 1.1.26)' -- -c4
+
+%:
+	dh $@

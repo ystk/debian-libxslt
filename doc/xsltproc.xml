@@ -282,6 +282,11 @@
 				e.g. <option>-o directory</option> will maybe not work,
 				but <option>-o directory/</option> will.
 			</para>
+			<para>
+				Also note that if there is no output to xsltproc,
+				<replaceable>FILE</replaceable> will not be created at all.
+				An empty file will <emphasis role="bold">not</emphasis> be created.
+			</para>
 		</note>
 	</listitem>
 		</varlistentry>

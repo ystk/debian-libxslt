@@ -35,11 +35,12 @@ all-local: libxslt.py
 
 python_LTLIBRARIES = libxsltmod.la
 
-libxsltmod_la_SOURCES = libxslt.c types.c libxslt-py.c
+libxsltmod_la_SOURCES = $(srcdir)/libxslt.c $(srcdir)/types.c
+nodist_libxsltmod_la_SOURCES = libxslt-py.c
 libxsltmod_la_LIBADD = $(mylibs) 
 
-libxslt.py: $(srcdir)/libxsl.py $(srcdir)/libxsltclass.py
-	cat $(srcdir)/libxsl.py $(srcdir)/libxsltclass.py > libxslt.py
+libxslt.py: $(srcdir)/libxsl.py libxsltclass.py
+	cat $(srcdir)/libxsl.py libxsltclass.py > libxslt.py
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(pythondir)
@@ -50,16 +51,16 @@ install-data-local:
 
 GENERATE = generator.py
 API_DESC = $(top_srcdir)/doc/libxslt-api.xml $(srcdir)/libxslt-python-api.xml
-GENERATED= $(srcdir)/libxsltclass.py \
-           $(srcdir)/libxslt-export.c \
-	   $(srcdir)/libxslt-py.c \
-	   $(srcdir)/libxslt-py.h \
-	   $(srcdir)/libxsltclass.txt
+GENERATED= libxsltclass.py \
+           libxslt-export.c \
+           libxslt-py.c \
+           libxslt-py.h \
+           libxsltclass.txt
 
 $(GENERATED): gen_prog
 
 gen_prog:  $(srcdir)/$(GENERATE) $(API_DESC)
-	cd $(srcdir) && $(PYTHON) $(GENERATE)
+	$(PYTHON) $(srcdir)/$(GENERATE) $(srcdir)
 	touch gen_prog
 
 $(libxsltmod_la_OBJECTS): $(GENERATED)

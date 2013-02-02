@@ -90,10 +90,15 @@ xsltGetCNsProp(xsltStylesheetPtr style, xmlNodePtr node,
     if ((node == NULL) || (style == NULL) || (style->dict == NULL))
 	return(NULL);
 
-    prop = node->properties;
-    if (nameSpace == NULL) {
+    if (nameSpace == NULL)
         return xmlGetProp(node, name);
-    }
+
+    if (node->type == XML_NAMESPACE_DECL)
+        return(NULL);
+    if (node->type == XML_ELEMENT_NODE)
+	prop = node->properties;
+    else
+	prop = NULL;
     while (prop != NULL) {
 	/*
 	 * One need to have
@@ -130,7 +135,7 @@ xsltGetCNsProp(xsltStylesheetPtr style, xmlNodePtr node,
 	    attrDecl = xmlGetDtdAttrDesc(doc->intSubset, node->name, name);
 	    if ((attrDecl == NULL) && (doc->extSubset != NULL))
 		attrDecl = xmlGetDtdAttrDesc(doc->extSubset, node->name, name);
-		
+
 	    if ((attrDecl != NULL) && (attrDecl->prefix != NULL)) {
 	        /*
 		 * The DTD declaration only allows a prefix search
@@ -172,7 +177,15 @@ xsltGetNsProp(xmlNodePtr node, const xmlChar *name, const xmlChar *nameSpace) {
     if (node == NULL)
 	return(NULL);
 
-    prop = node->properties;
+    if (nameSpace == NULL)
+        return xmlGetProp(node, name);
+
+    if (node->type == XML_NAMESPACE_DECL)
+        return(NULL);
+    if (node->type == XML_ELEMENT_NODE)
+	prop = node->properties;
+    else
+	prop = NULL;
     /*
     * TODO: Substitute xmlGetProp() for xmlGetNsProp(), since the former
     * is not namespace-aware and will return an attribute with equal
@@ -182,8 +195,6 @@ xsltGetNsProp(xmlNodePtr node, const xmlChar *name, const xmlChar *nameSpace) {
     *   So this would return "myName" even if an attribute @name
     *   in the XSLT was requested.
     */
-    if (nameSpace == NULL)
-	return(xmlGetProp(node, name));
     while (prop != NULL) {
 	/*
 	 * One need to have
@@ -216,7 +227,7 @@ xsltGetNsProp(xmlNodePtr node, const xmlChar *name, const xmlChar *nameSpace) {
 	    attrDecl = xmlGetDtdAttrDesc(doc->intSubset, node->name, name);
 	    if ((attrDecl == NULL) && (doc->extSubset != NULL))
 		attrDecl = xmlGetDtdAttrDesc(doc->extSubset, node->name, name);
-		
+
 	    if ((attrDecl != NULL) && (attrDecl->prefix != NULL)) {
 	        /*
 		 * The DTD declaration only allows a prefix search

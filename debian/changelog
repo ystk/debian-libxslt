@@ -1,3 +1,11 @@
+libxslt (1.1.26-6+squeeze3) stable-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Add patches to fix denial of service vulnerability (CVE-2012-6139)
+    (Closes: #703933)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Tue, 26 Mar 2013 21:48:42 +0100
+
 libxslt (1.1.26-6+squeeze2) stable-security; urgency=high
 
   * Patch to fix three CVEs (Closes: #689422):

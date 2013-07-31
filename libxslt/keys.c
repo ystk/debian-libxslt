@@ -311,8 +311,8 @@ xsltAddKey(xsltStylesheetPtr style, const xmlChar *name,
 	        end = skipPredicate(match, end);
 		if (end <= 0) {
 		    xsltTransformError(NULL, style, inst,
-		                       "key pattern is malformed: %s",
-				       key->match);
+		        "xsl:key : 'match' pattern is malformed: %s",
+		        key->match);
 		    if (style != NULL) style->errors++;
 		    goto error;
 		}
@@ -321,7 +321,7 @@ xsltAddKey(xsltStylesheetPtr style, const xmlChar *name,
 	}
 	if (current == end) {
 	    xsltTransformError(NULL, style, inst,
-			       "key pattern is empty\n");
+			       "xsl:key : 'match' pattern is empty\n");
 	    if (style != NULL) style->errors++;
 	    goto error;
 	}
@@ -344,6 +344,12 @@ xsltAddKey(xsltStylesheetPtr style, const xmlChar *name,
 	}
 	current = end;
     }
+    if (pattern == NULL) {
+        xsltTransformError(NULL, style, inst,
+                           "xsl:key : 'match' pattern is empty\n");
+        if (style != NULL) style->errors++;
+        goto error;
+    }
 #ifdef WITH_XSLT_DEBUG_KEYS
     xsltGenericDebug(xsltGenericDebugContext,
 	"   resulting pattern %s\n", pattern);
@@ -359,14 +365,14 @@ xsltAddKey(xsltStylesheetPtr style, const xmlChar *name,
     key->comp = xsltXPathCompile(style, pattern);
     if (key->comp == NULL) {
 	xsltTransformError(NULL, style, inst,
-		"xsl:key : XPath pattern compilation failed '%s'\n",
+		"xsl:key : 'match' pattern compilation failed '%s'\n",
 		         pattern);
 	if (style != NULL) style->errors++;
     }
     key->usecomp = xsltXPathCompile(style, use);
     if (key->usecomp == NULL) {
 	xsltTransformError(NULL, style, inst,
-		"xsl:key : XPath pattern compilation failed '%s'\n",
+		"xsl:key : 'use' expression compilation failed '%s'\n",
 		         use);
 	if (style != NULL) style->errors++;
     }

@@ -6,16 +6,7 @@
 functions = {}
 enums = {} # { enumType: { enumConstant: enumValue } }
 
-import os
-import sys
 import string
-
-if __name__ == "__main__":
-    # launched as a script
-    srcPref = os.path.dirname(sys.argv[0])
-else:
-    # imported
-    srcPref = os.path.dirname(__file__)
 
 #######################################################################
 #
@@ -23,6 +14,7 @@ else:
 #  XML API description
 #
 #######################################################################
+import os
 import xmllib
 try:
     import sgmlop
@@ -450,20 +442,20 @@ def buildStubs():
     global unknown_types
 
     try:
-        f = open(os.path.join(srcPref,"libxslt-api.xml"))
+        f = open("libxslt-api.xml")
         data = f.read()
         (parser, target)  = getparser()
         parser.feed(data)
         parser.close()
     except IOError, msg:
         try:
-            f = open(os.path.join(srcPref,"..","doc","libxslt-api.xml"))
+            f = open("../doc/libxslt-api.xml")
             data = f.read()
             (parser, target)  = getparser()
             parser.feed(data)
             parser.close()
         except IOError, msg:
-            print os.path.join(srcPref,"..","doc","libxslt-api.xml"), ":", msg
+            print "../doc/libxslt-api.xml", ":", msg
 
     n = len(functions.keys())
     print "Found %d functions in libxslt-api.xml" % (n)
@@ -471,7 +463,7 @@ def buildStubs():
     py_types['pythonObject'] = ('O', "pythonObject", "pythonObject",
                                 "pythonObject", "libxml_")
     try:
-        f = open(os.path.join(srcPref,"libxslt-python-api.xml"))
+        f = open("libxslt-python-api.xml")
         data = f.read()
         (parser, target)  = getparser()
         parser.feed(data)

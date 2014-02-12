@@ -1,10 +1,104 @@
+libxslt (1.1.26-14.1) unstable; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Upload as NMU acknowledged by Aron Xu.
+  * Add patches to fix denial of service vulnerability (CVE-2012-6139)
+    (Closes: #703933)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Tue, 26 Mar 2013 20:31:18 +0100
+
+libxslt (1.1.26-14) unstable; urgency=low
+
+  * Patch to fix three CVEs (Closes: #689422):
+    - CVE-2012-2870 by Daniel Veillard and Chris Evans
+    - CVE-2012-2871 by Daniel Veillard
+    - CVE-2012-2893 by Chris Evans
+
+ -- Aron Xu <aron@debian.org>  Tue, 02 Oct 2012 23:53:39 +0800
+
+libxslt (1.1.26-13) unstable; urgency=low
+
+  * Patch to fix CVE-2012-2825 (Closes: #679283).
+
+ -- Aron Xu <aron@debian.org>  Thu, 05 Jul 2012 11:09:19 +0800
+
+libxslt (1.1.26-12) unstable; urgency=low
+
+  [ Aron Xu ]
+  * New maintainer (Closes: #654177)
+  * debian/rules: small improvements, stop shipping .la files.
+  * debian/control: mark libxslt1-dev as not M-A (Closes: #671902).
+  
+  [ YunQiang Su ]
+  * Convert to 3.0 source format. 
+  * Byte-compile Python modules again (Closes: #671901).
+
+ -- Aron Xu <aron@debian.org>  Tue, 29 May 2012 00:31:36 +0800
+
+libxslt (1.1.26-11) unstable; urgency=low
+
+  * QA upload.
+  * Bump standards version to 3.9.3. 
+  * Apply Steve Langasek's patch to enable multiarch (closes: #643034).
+  * Fix cve-2011-3970: out-of-bounds array access issue (closes: #660650). 
+  * Bump debian/compat to 9 and enable hardened build flags (closes: #655601).
+  * Eliminate system config.sub and config.guess from the debian diff
+    (closes: #670799).
+
+ -- Michael Gilbert <mgilbert@debian.org>  Sun, 06 May 2012 20:35:38 -0400
+
+libxslt (1.1.26-10) unstable; urgency=low
+
+  * QA upload.
+  * Fix building for real: (Closes: #666333)
+    - make(1) targets accumulate, they do not replace
+    - You absolutely must not have a build-% (wildcard) target!
+    - Never have a directory (or file) with the same name as a
+      (phony) target, as it *will* prevent the target from being
+      run while that file/directory exists, with varying messages
+    => rename ./build/ to builddir and build-% to dobuild-%
+    Discovered while trying to hand-fix an m68k build.
+  * Throw in some lintian fixes (manpage, spelling) for good measure.
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sun, 06 May 2012 16:02:55 +0000
+
+libxslt (1.1.26-9) unstable; urgency=low
+
+  * QA upload.
+  * Set maintainer to Debian QA Group <packages@qa.debian.org>
+  * Clear uploaders
+  * Fix building with build-arch. Closes: 666333.
+
+ -- Peter Michael Green <plugwash@p10link.net>  Tue, 24 Apr 2012 23:23:50 +0000
+
+libxslt (1.1.26-8) unstable; urgency=low
+
+  * debian/rules:
+    - Empty dependency_libs in .la files. Closes: #633337.
+    - Add --with python2 to dh call.
+  * debian/control:
+    - Remove build dependency on python-support.
+    - Build depend on python-all-dev >= 2.6.6-3~.
+    - Remove XB-Python-Version header.
+    - Bump Standards-Version to 3.9.2.0. No changes required.
+  * debian/pycompat: Removed.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 29 Jul 2011 11:59:25 +0200
+
+libxslt (1.1.26-7) unstable; urgency=low
+
+  * libxslt/functions.c: Fix generate-id() to not expose object addresses.
+    Closes: #617413. Fixes: CVE-2011-1202.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 18 Mar 2011 16:11:19 +0100
+
 libxslt (1.1.26-6) unstable; urgency=low
 
   * debian/python-libxslt1-dbg.preinst: Add preinst snippet to remove
     /usr/share/doc/python-libxslt1-dbg symlink on Ubuntu. This is an
     Ubuntu-only fix, but allows Ubuntu to just use the Debian package
     without further modifications.
-    Closes: #587910
+    Closes: #587910.
 
  -- Mike Hommey <glandium@debian.org>  Thu, 26 Aug 2010 11:42:01 +0200
 

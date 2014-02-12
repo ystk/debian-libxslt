@@ -45,7 +45,7 @@ EXTRA_DIST =			\
 
 man_MANS = xsltproc.1
 
-all:	$(man_MANS)
+all:	web ../NEWS libxslt.xsa $(man_MANS)
 
 api:	libxslt-api.xml libxslt-refs.xml $(APIPAGES) search.php \
         html/index.html $(WIN32_DIR)/libxslt.def.src

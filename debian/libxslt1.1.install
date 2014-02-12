@@ -1,2 +1,2 @@
-usr/lib/libexslt.so.*
-usr/lib/libxslt.so.*
+usr/lib/*/libexslt.so.*
+usr/lib/*/libxslt.so.*

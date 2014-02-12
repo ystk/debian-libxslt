@@ -2,9 +2,17 @@ Source: libxslt
 Section: text
 Priority: optional
 Maintainer: Debian XML/SGML Group <debian-xml-sgml-pkgs@lists.alioth.debian.org>
-Uploaders: Mike Hommey <glandium@debian.org>
-Standards-Version: 3.9.0.0
-Build-Depends: debhelper (>= 7.0.50~), libxml2-dev (>= 2.6.27), python-all-dev (>= 2.3.5-11), python-all-dbg, python-support (>= 0.3), libgcrypt11-dev, autotools-dev, binutils (>= 2.14.90.0.7), perl
+Uploaders: Aron Xu <aron@debian.org>, YunQiang Su <wzssyqa@debian.org>
+Standards-Version: 3.9.3
+Build-Depends:
+ debhelper (>= 9),
+ libxml2-dev (>= 2.6.27),
+ python-all-dev (>= 2.6.6-3~),
+ python-all-dbg,
+ libgcrypt11-dev,
+ dh-autoreconf,
+ binutils (>= 2.14.90.0.7),
+ perl
 Homepage: http://xmlsoft.org/xslt/
 Vcs-Git: git://git.debian.org/debian-xml-sgml/libxslt.git
 Vcs-Browser: http://git.debian.org/?p=debian-xml-sgml/libxslt.git
@@ -12,7 +20,11 @@ Vcs-Browser: http://git.debian.org/?p=debian-xml-sgml/libxslt.git
 Package: libxslt1.1
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
 Description: XSLT 1.0 processing library - runtime library
  XSLT is an XML language for defining transformations of XML files from
  XML to some other arbitrary format, such as XML, HTML, plain text, etc.
@@ -26,7 +38,10 @@ Package: libxslt1-dev
 Section: libdevel
 Architecture: any
 Provides: libxslt-dev
-Depends: libxslt1.1 (= ${binary:Version}), libxml2-dev (>= 2.6.26), ${misc:Depends}
+Depends:
+ libxslt1.1 (= ${binary:Version}),
+ libxml2-dev (>= 2.6.26),
+ ${misc:Depends}
 Description: XSLT 1.0 processing library - development kit
  XSLT is an XML language for defining transformations of XML files from
  XML to some other arbitrary format, such as XML, HTML, plain text, etc.
@@ -39,7 +54,10 @@ Package: libxslt1-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: libxslt1.1 (= ${binary:Version}), ${misc:Depends}
+Depends:
+ libxslt1.1 (= ${binary:Version}),
+ ${misc:Depends}
+Multi-Arch: same
 Description: XSLT 1.0 processing library - debugging symbols
  XSLT is an XML language for defining transformations of XML files from
  XML to some other arbitrary format, such as XML, HTML, plain text, etc.
@@ -51,9 +69,11 @@ Description: XSLT 1.0 processing library - debugging symbols
  Debugging symbols for the Python modules are not available.
 
 Package: xsltproc
-Section: text
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Multi-Arch: foreign
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends}
 Description: XSLT 1.0 command line processor
  XSLT is an XML language for defining transformations of XML files from
  XML to some other arbitrary format, such as XML, HTML, plain text, etc.
@@ -66,9 +86,12 @@ Package: python-libxslt1
 Section: python
 Architecture: any
 Provides: ${python:Provides}
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, python-libxml2
-XB-Python-Version: ${python:Versions}
-Description:  Python bindings for libxslt1
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ ${python:Depends},
+ python-libxml2
+Description: Python bindings for libxslt1
  XSLT is an XML language for defining transformations of XML files from
  XML to some other arbitrary format, such as XML, HTML, plain text, etc.
  using standard XSLT stylesheets. libxslt is a C library which
@@ -82,9 +105,13 @@ Section: debug
 Architecture: any
 Priority: extra
 Provides: ${python:Provides}
-Depends: python-dbg, python-libxslt1 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}, python-libxml2-dbg
-XB-Python-Version: ${python:Versions}
-Description:  Python bindings for libxslt1 (debug extension)
+Depends:
+ python-dbg,
+ python-libxslt1 (= ${binary:Version}),
+ ${shlibs:Depends},
+ ${misc:Depends},
+ python-libxml2-dbg
+Description: Python bindings for libxslt1 (debug extension)
  XSLT is an XML language for defining transformations of XML files from
  XML to some other arbitrary format, such as XML, HTML, plain text, etc.
  using standard XSLT stylesheets. libxslt is a C library which

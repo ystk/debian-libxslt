@@ -37,7 +37,7 @@ dobuild-%:
 
 dobuild-python%: BUILD_DIR=builddir/main/$*
 dobuild-python%-dbg: BUILD_FLAGS = PYTHON_INCLUDES=/usr/include/$(*:-dbg=_d) \
-    LDFLAGS="-L$(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)" CFLAGS="-Wall -g -O0"
+    LDFLAGS="$(LDFLAGS) -L$(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)" CFLAGS="$(CFLAGS) -Wall -O0"
 
 override_dh_auto_clean:
 	rm -rf builddir debian/tmp-dbg config.sub config.guess autogen.sh

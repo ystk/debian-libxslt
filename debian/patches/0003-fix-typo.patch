@@ -1,5 +1,5 @@
-From: YunQiang Su <wzssyqa@gmail.com>
-Date: Mon, 28 May 2012 18:39:44 +0800
+From: Aron Xu <aron@debian.org>
+Date: Wed, 3 Oct 2012 00:59:10 +0800
 Subject: fix typo
 
 ---
@@ -19,7 +19,6 @@ Subject: fix typo
  libxslt/extra.c                               |    2 +-
  libxslt/imports.c                             |    2 +-
  libxslt/numbers.c                             |    4 ++--
- libxslt/pattern.c                             |    2 ++
  libxslt/xsltInternals.h                       |    6 +++---
  libxslt/xsltconfig.h                          |    4 ++--
  libxslt/xsltconfig.h.in                       |    4 ++--
@@ -33,13 +32,13 @@ Subject: fix typo
  tests/docbook/test/gdp-handbook.xml           |    2 +-
  tests/plugins/testplugin.c                    |    2 +-
  xsltproc/xsltproc.c                           |    2 +-
- 30 files changed, 65 insertions(+), 63 deletions(-)
+ 29 files changed, 63 insertions(+), 63 deletions(-)
 
 diff --git a/doc/APIchunk6.html b/doc/APIchunk6.html
-index fd920a9..2325122 100644
+index 3903db1..d348c6f 100644
 --- a/doc/APIchunk6.html
 +++ b/doc/APIchunk6.html
-@@ -139,7 +139,7 @@ A:link, A:visited, A:active { text-decoration: underline }
+@@ -141,7 +141,7 @@ A:link, A:visited, A:active { text-decoration: underline }
  <a href="html/libxslt-transform.html#xsltText">xsltText</a><br />
  <a href="html/libxslt-xsltInternals.html#xsltTransformFunction">xsltTransformFunction</a><br />
  <a href="html/libxslt-transform.html#xsltValueOf">xsltValueOf</a><br />
@@ -49,10 +48,10 @@ index fd920a9..2325122 100644
  <a href="html/libxslt-xsltInternals.html#_xsltTransformContext">_xsltTransformContext</a><br />
  <a href="html/libxslt-extra.html#xsltDebug">xsltDebug</a><br />
 diff --git a/doc/APIchunk8.html b/doc/APIchunk8.html
-index 4940679..1f56a62 100644
+index 741f7ea..4c84886 100644
 --- a/doc/APIchunk8.html
 +++ b/doc/APIchunk8.html
-@@ -222,7 +222,7 @@ A:link, A:visited, A:active { text-decoration: underline }
+@@ -224,7 +224,7 @@ A:link, A:visited, A:active { text-decoration: underline }
  <a href="html/libxslt-xsltInternals.html#xsltIsBlank">xsltIsBlank</a><br />
  <a href="html/libxslt-security.html#xsltSetCtxtSecurityPrefs">xsltSetCtxtSecurityPrefs</a><br />
  <a href="html/libxslt-security.html#xsltSetSecurityPrefs">xsltSetSecurityPrefs</a><br />
@@ -167,10 +166,10 @@ index 8b7de45..7dbbf9f 100644
  </pre><p>Finds the named template, apply import precedence rule. REVISIT TODO: We'll change the nameURI fields of templates to be in the string dict, so if the specified @nameURI is in the same dict, then use pointer comparison. Check if this can be done in a sane way. Maybe this function is not needed internally at transformation-time if we hard-wire the called templates to the caller.</p>
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>ctxt</tt></i>:</span></td><td>an XSLT transformation context</td></tr><tr><td><span class="term"><i><tt>name</tt></i>:</span></td><td>the template name</td></tr><tr><td><span class="term"><i><tt>nameURI</tt></i>:</span></td><td>the template name URI</td></tr><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>the <a href="libxslt-xsltInternals.html#xsltTemplatePtr">xsltTemplatePtr</a> or NULL if not found</td></tr></tbody></table></div><h3><a name="xsltNeedElemSpaceHandling" id="xsltNeedElemSpaceHandling"></a>Function: xsltNeedElemSpaceHandling</h3><pre class="programlisting">int	xsltNeedElemSpaceHandling	(<a href="libxslt-xsltInternals.html#xsltTransformContextPtr">xsltTransformContextPtr</a> ctxt)<br />
 diff --git a/doc/html/libxslt-xsltInternals.html b/doc/html/libxslt-xsltInternals.html
-index 74b2c97..4480e23 100644
+index 5cd9cc3..1daac7a 100644
 --- a/doc/html/libxslt-xsltInternals.html
 +++ b/doc/html/libxslt-xsltInternals.html
-@@ -623,7 +623,7 @@ The content of this structure is not made public by the API.
+@@ -626,7 +626,7 @@ The content of this structure is not made public by the API.
      void *	_private	: user defined data
      int	extrasNr	: the number of extras used
      int	extrasMax	: the number of extras allocated
@@ -179,7 +178,7 @@ index 74b2c97..4480e23 100644
      <a href="libxslt-xsltInternals.html#xsltDocumentPtr">xsltDocumentPtr</a>	styleList	: the stylesheet docs list
      void *	sec	: the security preferences if any
      xmlGenericErrorFunc	error	: a specific error handler
-@@ -684,7 +684,7 @@ void	xsltElemPreCompDeallocator	(<a href="libxslt-xsltInternals.html#xsltElemPre
+@@ -689,7 +689,7 @@ void	xsltElemPreCompDeallocator	(<a href="libxslt-xsltInternals.html#xsltElemPre
  </pre><p>Marks the result of a value-returning extension instruction in order to avoid it being garbage collected before the extension instruction exits. Note that one still has to additionally register any newly created tree fragments (via xsltCreateRVT()) with xsltRegisterLocalRVT().</p>
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>ctxt</tt></i>:</span></td><td>an XSLT transformation context</td></tr><tr><td><span class="term"><i><tt>obj</tt></i>:</span></td><td>an XPath object to be inspected for result tree fragments</td></tr><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>0 in case of success and -1 in case of error.</td></tr></tbody></table></div><h3><a name="xsltFormatNumberConversion" id="xsltFormatNumberConversion"></a>Function: xsltFormatNumberConversion</h3><pre class="programlisting">xmlXPathError	xsltFormatNumberConversion	(<a href="libxslt-xsltInternals.html#xsltDecimalFormatPtr">xsltDecimalFormatPtr</a> self, <br />						 xmlChar * format, <br />						 double number, <br />						 xmlChar ** result)<br />
  </pre><p>format-number() uses the JDK 1.1 DecimalFormat class: http://java.sun.com/products/jdk/1.1/docs/api/java.text.DecimalFormat.html Structure: pattern := subpattern{;subpattern} subpattern := {prefix}integer{.fraction}{suffix} prefix := '\\u0000'..'\\uFFFD' - specialCharacters suffix := '\\u0000'..'\\uFFFD' - specialCharacters integer := '#'* '0'* '0' fraction := '0'* '#'* Notation: X* 0 or more instances of X (X | Y) either X or Y. X..Y any character from X up to Y, inclusive. S - T characters in S, except those in T Special Characters: Symbol Meaning 0 a digit # a digit, zero shows as absent . placeholder for decimal separator , placeholder for grouping separator. ; separates formats. - default negative prefix. % multiply by 100 and show as percentage ? multiply by 1000 and show as per mille X any other characters can be used in the prefix or suffix ' used to quote special characters in a prefix or suffix.</p>
@@ -188,7 +187,7 @@ index 74b2c97..4480e23 100644
  </pre><p>Free up the memory associated to the attribute value templates</p>
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>avt</tt></i>:</span></td><td>pointer to an list of AVT structures</td></tr></tbody></table></div><h3><a name="xsltFreeRVTs" id="xsltFreeRVTs"></a>Function: xsltFreeRVTs</h3><pre class="programlisting">void	xsltFreeRVTs			(<a href="libxslt-xsltInternals.html#xsltTransformContextPtr">xsltTransformContextPtr</a> ctxt)<br />
  </pre><p>Frees all registered result value trees (Result Tree Fragments) of the transformation. Internal function; should not be called by user-code.</p>
-@@ -704,7 +704,7 @@ void	xsltElemPreCompDeallocator	(<a href="libxslt-xsltInternals.html#xsltElemPre
+@@ -709,7 +709,7 @@ void	xsltElemPreCompDeallocator	(<a href="libxslt-xsltInternals.html#xsltElemPre
  </pre><p>Create a new XSLT Stylesheet</p>
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>the newly allocated <a href="libxslt-xsltInternals.html#xsltStylesheetPtr">xsltStylesheetPtr</a> or NULL in case of error</td></tr></tbody></table></div><h3><a name="xsltNumberFormat" id="xsltNumberFormat"></a>Function: xsltNumberFormat</h3><pre class="programlisting">void	xsltNumberFormat		(<a href="libxslt-xsltInternals.html#xsltTransformContextPtr">xsltTransformContextPtr</a> ctxt, <br />					 <a href="libxslt-numbersInternals.html#xsltNumberDataPtr">xsltNumberDataPtr</a> data, <br />					 xmlNodePtr node)<br />
  </pre><p>Convert one number.</p>
@@ -198,10 +197,10 @@ index 74b2c97..4480e23 100644
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>cctxt</tt></i>:</span></td><td>the compilation context</td></tr><tr><td><span class="term"><i><tt>elem</tt></i>:</span></td><td>the element node of the XSLT instruction</td></tr><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>0 if everything's fine; -1 on API or internal errors.</td></tr></tbody></table></div><h3><a name="xsltParseSequenceConstructor" id="xsltParseSequenceConstructor"></a>Function: xsltParseSequenceConstructor</h3><pre class="programlisting">void	xsltParseSequenceConstructor	(<a href="libxslt-xsltInternals.html#xsltCompilerCtxtPtr">xsltCompilerCtxtPtr</a> cctxt, <br />					 xmlNodePtr cur)<br />
  </pre><p>Parses a "template" content (or "sequence constructor" in XSLT 2.0 terms). This will additionally remove xsl:text elements from the tree.</p>
 diff --git a/doc/html/libxslt-xsltutils.html b/doc/html/libxslt-xsltutils.html
-index d6551cc..45eb311 100644
+index 155f050..d173415 100644
 --- a/doc/html/libxslt-xsltutils.html
 +++ b/doc/html/libxslt-xsltutils.html
-@@ -126,7 +126,7 @@ void	xsltDropCallCallback		(void)
+@@ -127,7 +127,7 @@ void	xsltDropCallCallback		(void)
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>the value of xslDebugStatus.</td></tr></tbody></table></div><h3><a name="xsltGetNsProp" id="xsltGetNsProp"></a>Function: xsltGetNsProp</h3><pre class="programlisting">xmlChar *	xsltGetNsProp		(xmlNodePtr node, <br />					 const xmlChar * name, <br />					 const xmlChar * nameSpace)<br />
  </pre><p>Similar to xmlGetNsProp() but with a slightly different semantic Search and get the value of an attribute associated to a node This attribute has to be anchored in the namespace specified, or has no namespace and the element is in that namespace. This does the entity substitution. This function looks in DTD attribute declaration for #FIXED or default declaration values unless DTD use has been turned off.</p>
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>node</tt></i>:</span></td><td>the node</td></tr><tr><td><span class="term"><i><tt>name</tt></i>:</span></td><td>the attribute name</td></tr><tr><td><span class="term"><i><tt>nameSpace</tt></i>:</span></td><td>the URI of the namespace</td></tr><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>the attribute value or NULL if not found. It's up to the caller to free the memory.</td></tr></tbody></table></div><h3><a name="xsltGetProfileInformation" id="xsltGetProfileInformation"></a>Function: xsltGetProfileInformation</h3><pre class="programlisting">xmlDocPtr	xsltGetProfileInformation	(<a href="libxslt-xsltInternals.html#xsltTransformContextPtr">xsltTransformContextPtr</a> ctxt)<br />
@@ -210,7 +209,7 @@ index d6551cc..45eb311 100644
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>ctxt</tt></i>:</span></td><td>a transformation context</td></tr><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>the xmlDocPtr corresponding to the result or NULL if not available.</td></tr></tbody></table></div><h3><a name="xsltGetQNameURI" id="xsltGetQNameURI"></a>Function: xsltGetQNameURI</h3><pre class="programlisting">const xmlChar *	xsltGetQNameURI		(xmlNodePtr node, <br />					 xmlChar ** name)<br />
  </pre><p>This function analyzes @name, if the name contains a prefix, the function seaches the associated namespace in scope for it. It will also replace @name value with the NCName, the old value being freed. Errors in the prefix lookup are signalled by setting @name to NULL. NOTE: the namespace returned is a pointer to the place where it is defined and hence has the same lifespan as the document holding it.</p>
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>node</tt></i>:</span></td><td>the node holding the QName</td></tr><tr><td><span class="term"><i><tt>name</tt></i>:</span></td><td>pointer to the initial QName value</td></tr><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>the namespace URI if there is a prefix, or NULL if @name is not prefixed.</td></tr></tbody></table></div><h3><a name="xsltGetQNameURI2" id="xsltGetQNameURI2"></a>Function: xsltGetQNameURI2</h3><pre class="programlisting">const xmlChar *	xsltGetQNameURI2	(<a href="libxslt-xsltInternals.html#xsltStylesheetPtr">xsltStylesheetPtr</a> style, <br />					 xmlNodePtr node, <br />					 const xmlChar ** name)<br />
-@@ -141,8 +141,8 @@ void	xsltHandleDebuggerCallback	(xmlNodePtr cur, <br />					 xmlNodePtr node, <b
+@@ -142,8 +142,8 @@ void	xsltHandleDebuggerCallback	(xmlNodePtr cur, <br />					 xmlNodePtr node, <b
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>ctxt</tt></i>:</span></td><td>an XSLT processing context</td></tr><tr><td><span class="term"><i><tt>node</tt></i>:</span></td><td>The current node</td></tr><tr><td><span class="term"><i><tt>inst</tt></i>:</span></td><td>The node containing the message instruction</td></tr></tbody></table></div><h3><a name="xsltPrintErrorContext" id="xsltPrintErrorContext"></a>Function: xsltPrintErrorContext</h3><pre class="programlisting">void	xsltPrintErrorContext		(<a href="libxslt-xsltInternals.html#xsltTransformContextPtr">xsltTransformContextPtr</a> ctxt, <br />					 <a href="libxslt-xsltInternals.html#xsltStylesheetPtr">xsltStylesheetPtr</a> style, <br />					 xmlNodePtr node)<br />
  </pre><p>Display the context of an error.</p>
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>ctxt</tt></i>:</span></td><td>the transformation context</td></tr><tr><td><span class="term"><i><tt>style</tt></i>:</span></td><td>the stylesheet</td></tr><tr><td><span class="term"><i><tt>node</tt></i>:</span></td><td>the current node being processed</td></tr></tbody></table></div><h3><a name="xsltSaveProfiling" id="xsltSaveProfiling"></a>Function: xsltSaveProfiling</h3><pre class="programlisting">void	xsltSaveProfiling		(<a href="libxslt-xsltInternals.html#xsltTransformContextPtr">xsltTransformContextPtr</a> ctxt, <br />					 FILE * output)<br />
@@ -222,10 +221,10 @@ index d6551cc..45eb311 100644
  <div class="variablelist"><table border="0"><col align="left" /><tbody><tr><td><span class="term"><i><tt>buf</tt></i>:</span></td><td>an output buffer</td></tr><tr><td><span class="term"><i><tt>result</tt></i>:</span></td><td>the result xmlDocPtr</td></tr><tr><td><span class="term"><i><tt>style</tt></i>:</span></td><td>the stylesheet</td></tr><tr><td><span class="term"><i><tt>Returns</tt></i>:</span></td><td>the number of byte written or -1 in case of failure.</td></tr></tbody></table></div><h3><a name="xsltSaveResultToFd" id="xsltSaveResultToFd"></a>Function: xsltSaveResultToFd</h3><pre class="programlisting">int	xsltSaveResultToFd		(int fd, <br />					 xmlDocPtr result, <br />					 <a href="libxslt-xsltInternals.html#xsltStylesheetPtr">xsltStylesheetPtr</a> style)<br />
  </pre><p>Save the result @result obtained by applying the @style stylesheet to an open file descriptor This does not close the descriptor.</p>
 diff --git a/doc/libxslt-api.xml b/doc/libxslt-api.xml
-index d0ed1a2..e467f9f 100644
+index 1cf7c89..5309baf 100644
 --- a/doc/libxslt-api.xml
 +++ b/doc/libxslt-api.xml
-@@ -1357,7 +1357,7 @@ preserve space elements'/>
+@@ -1362,7 +1362,7 @@ preserve space elements'/>
  *'/>
        <field name='templates' type='xsltTemplatePtr' info=' the ordered list of templates'/>
        <field name='templatesHash' type='void *' info=' hash table or wherever compiled templates
@@ -234,7 +233,7 @@ index d0ed1a2..e467f9f 100644
        <field name='rootMatch' type='void *' info=' template based on /'/>
        <field name='keyMatch' type='void *' info=' template based on key()'/>
        <field name='elemMatch' type='void *' info=' template based on *'/>
-@@ -1444,7 +1444,7 @@ TODO: We need to get rid of this.
+@@ -1451,7 +1451,7 @@ TODO: We need to get rid of this.
  *  refactored code.
  *'/>
        <field name='inheritedNsNr' type='int' info=' number of inherited namespaces'/>
@@ -243,7 +242,7 @@ index d0ed1a2..e467f9f 100644
        <field name='nbCalls' type='int' info=' the number of time the template was called'/>
        <field name='time' type='unsigned long' info=' the time spent in this template'/>
        <field name='params' type='void *' info=' xsl:param instructions'/>
-@@ -1500,7 +1500,7 @@ TODO: We need to get rid of this.
+@@ -1511,7 +1511,7 @@ TODO: We need to get rid of this.
        <field name='_private' type='void *' info=' user defined data'/>
        <field name='extrasNr' type='int' info=' the number of extras used'/>
        <field name='extrasMax' type='int' info=' the number of extras allocated'/>
@@ -252,7 +251,7 @@ index d0ed1a2..e467f9f 100644
        <field name='styleList' type='xsltDocumentPtr' info=' the stylesheet docs list'/>
        <field name='sec' type='void *' info=' the security preferences if any'/>
        <field name='error' type='xmlGenericErrorFunc' info=' a specific error handler'/>
-@@ -1844,7 +1844,7 @@ exits'/>
+@@ -1858,7 +1858,7 @@ exits'/>
        <arg name='ctxt' type='xsltTransformContextPtr' info='an XSLT processing context'/>
        <arg name='node' type='xmlNodePtr' info='The current node'/>
        <arg name='inst' type='xmlNodePtr' info='the instruction in the stylesheet'/>
@@ -261,7 +260,7 @@ index d0ed1a2..e467f9f 100644
      </function>
      <function name='xsltDebugDumpExtensions' file='extensions'>
        <info>Dumps a list of the registered XSLT extension functions and elements</info>
-@@ -2071,7 +2071,7 @@ exits'/>
+@@ -2085,7 +2085,7 @@ exits'/>
        <arg name='doc' type='xmlDocPtr' info='a parsed XML document'/>
      </function>
      <function name='xsltFindElemSpaceHandling' file='imports'>
@@ -270,7 +269,7 @@ index d0ed1a2..e467f9f 100644
        <return type='int' info='1 if space should be stripped, 0 if not, and 2 if everything should be CDTATA wrapped.'/>
        <arg name='ctxt' type='xsltTransformContextPtr' info='an XSLT transformation context'/>
        <arg name='node' type='xmlNodePtr' info='an XML node'/>
-@@ -2097,7 +2097,7 @@ exits'/>
+@@ -2111,7 +2111,7 @@ exits'/>
        <arg name='self' type='xsltDecimalFormatPtr' info='the decimal format'/>
        <arg name='format' type='xmlChar *' info='the format requested'/>
        <arg name='number' type='double' info='the value to format'/>
@@ -279,7 +278,7 @@ index d0ed1a2..e467f9f 100644
      </function>
      <function name='xsltFormatNumberFunction' file='functions'>
        <info>Implement the format-number() XSLT function string format-number(number, string, string?)</info>
-@@ -2278,7 +2278,7 @@ exits'/>
+@@ -2296,7 +2296,7 @@ exits'/>
        <arg name='out' type='xmlNodePtr' info='the result element'/>
      </function>
      <function name='xsltGetProfileInformation' file='xsltutils'>
@@ -288,7 +287,7 @@ index d0ed1a2..e467f9f 100644
        <return type='xmlDocPtr' info='the xmlDocPtr corresponding to the result or NULL if not available.'/>
        <arg name='ctxt' type='xsltTransformContextPtr' info='a transformation context'/>
      </function>
-@@ -2521,7 +2521,7 @@ exits'/>
+@@ -2539,7 +2539,7 @@ exits'/>
        <info>Convert one number.</info>
        <return type='void'/>
        <arg name='ctxt' type='xsltTransformContextPtr' info='the XSLT transformation context'/>
@@ -297,7 +296,7 @@ index d0ed1a2..e467f9f 100644
        <arg name='node' type='xmlNodePtr' info='the data to format'/>
      </function>
      <function name='xsltParseAnyXSLTElem' file='xsltInternals'>
-@@ -2838,10 +2838,10 @@ exits'/>
+@@ -2856,10 +2856,10 @@ exits'/>
        <arg name='userCtxt' type='xsltTransformContextPtr' info='user provided transform context'/>
      </function>
      <function name='xsltSaveProfiling' file='xsltutils'>
@@ -311,10 +310,10 @@ index d0ed1a2..e467f9f 100644
      <function name='xsltSaveResultTo' file='xsltutils'>
        <info>Save the result @result obtained by applying the @style stylesheet to an I/O output channel @buf</info>
 diff --git a/doc/libxslt-refs.xml b/doc/libxslt-refs.xml
-index c21e6d2..6e137b6 100644
+index 3d2169f..d7b1094 100644
 --- a/doc/libxslt-refs.xml
 +++ b/doc/libxslt-refs.xml
-@@ -5556,7 +5556,7 @@
+@@ -5553,7 +5553,7 @@
            <ref name='xsltTransformFunction'/>
            <ref name='xsltValueOf'/>
          </word>
@@ -323,7 +322,7 @@ index c21e6d2..6e137b6 100644
            <ref name='_xsltStylesheet'/>
            <ref name='_xsltTemplate'/>
            <ref name='_xsltTransformContext'/>
-@@ -6434,7 +6434,7 @@
+@@ -6437,7 +6437,7 @@
            <ref name='xsltSetCtxtSecurityPrefs'/>
            <ref name='xsltSetSecurityPrefs'/>
          </word>
@@ -344,7 +343,7 @@ index b46ffc0..03b4b3b 100644
   * See Copyright for the status of this software.
   *
 diff --git a/libxslt/extensions.c b/libxslt/extensions.c
-index 6187b7a..14cb90c 100644
+index 30c3368..3589ef2 100644
 --- a/libxslt/extensions.c
 +++ b/libxslt/extensions.c
 @@ -2061,7 +2061,7 @@ xsltExtElementPreCompTest(xsltStylesheetPtr style, xmlNodePtr inst,
@@ -357,7 +356,7 @@ index 6187b7a..14cb90c 100644
   * Process a libxslt:test node
   */
 diff --git a/libxslt/extra.c b/libxslt/extra.c
-index 3a0f547..c0a204f 100644
+index 17df4ba..97aa262 100644
 --- a/libxslt/extra.c
 +++ b/libxslt/extra.c
 @@ -50,7 +50,7 @@
@@ -370,7 +369,7 @@ index 3a0f547..c0a204f 100644
   * Process an debug node
   */
 diff --git a/libxslt/imports.c b/libxslt/imports.c
-index 23538ab..f70dd19 100644
+index 9277b4f..c11ee91 100644
 --- a/libxslt/imports.c
 +++ b/libxslt/imports.c
 @@ -329,7 +329,7 @@ xsltNeedElemSpaceHandling(xsltTransformContextPtr ctxt) {
@@ -383,10 +382,10 @@ index 23538ab..f70dd19 100644
   *
   * Returns 1 if space should be stripped, 0 if not, and 2 if everything
 diff --git a/libxslt/numbers.c b/libxslt/numbers.c
-index 8683ca8..6bc2a0a 100644
+index 9cd1cf3..2072c31 100644
 --- a/libxslt/numbers.c
 +++ b/libxslt/numbers.c
-@@ -726,7 +726,7 @@ xsltNumberFormatGetValue(xmlXPathContextPtr context,
+@@ -703,7 +703,7 @@ xsltNumberFormatGetValue(xmlXPathContextPtr context,
  /**
   * xsltNumberFormat:
   * @ctxt: the XSLT transformation context
@@ -395,7 +394,7 @@ index 8683ca8..6bc2a0a 100644
   * @node: the data to format
   *
   * Convert one number.
-@@ -902,7 +902,7 @@ xsltFormatNumberPreSuffix(xsltDecimalFormatPtr self, xmlChar **format, xsltForma
+@@ -879,7 +879,7 @@ xsltFormatNumberPreSuffix(xsltDecimalFormatPtr self, xmlChar **format, xsltForma
   * @self: the decimal format
   * @format: the format requested
   * @number: the value to format
@@ -404,21 +403,8 @@ index 8683ca8..6bc2a0a 100644
   *
   * format-number() uses the JDK 1.1 DecimalFormat class:
   *
-diff --git a/libxslt/pattern.c b/libxslt/pattern.c
-index 8ce74e3..4ce3e12 100644
---- a/libxslt/pattern.c
-+++ b/libxslt/pattern.c
-@@ -1864,6 +1864,8 @@ xsltCompilePatternInternal(const xmlChar *pattern, xmlDocPtr doc,
- 		while ((pattern[end] != 0) && (pattern[end] != '"'))
- 		    end++;
- 	    }
-+	    if (pattern[end] == 0)
-+		break;
- 	    end++;
- 	}
- 	if (current == end) {
 diff --git a/libxslt/xsltInternals.h b/libxslt/xsltInternals.h
-index e991a93..2648f32 100644
+index 95e8fe6..5321e9a 100644
 --- a/libxslt/xsltInternals.h
 +++ b/libxslt/xsltInternals.h
 @@ -290,7 +290,7 @@ struct _xsltTemplate {
@@ -430,7 +416,7 @@ index e991a93..2648f32 100644
      int nbCalls;        /* the number of time the template was called */
      unsigned long time; /* the time spent in this template */
      void *params;       /* xsl:param instructions */
-@@ -1507,7 +1507,7 @@ struct _xsltStylesheet {
+@@ -1512,7 +1512,7 @@ struct _xsltStylesheet {
       */
      xsltTemplatePtr templates;	/* the ordered list of templates */
      void *templatesHash;	/* hash table or wherever compiled templates
@@ -439,7 +425,7 @@ index e991a93..2648f32 100644
      void *rootMatch;		/* template based on / */
      void *keyMatch;		/* template based on key() */
      void *elemMatch;		/* template based on * */
-@@ -1721,7 +1721,7 @@ struct _xsltTransformContext {
+@@ -1730,7 +1730,7 @@ struct _xsltTransformContext {
  
      int              extrasNr;		/* the number of extras used */
      int              extrasMax;		/* the number of extras allocated */
@@ -449,7 +435,7 @@ index e991a93..2648f32 100644
      xsltDocumentPtr  styleList;		/* the stylesheet docs list */
      void                 * sec;		/* the security preferences if any */
 diff --git a/libxslt/xsltconfig.h b/libxslt/xsltconfig.h
-index db20ebd..2b00900 100644
+index bea77e4..6cb5fd8 100644
 --- a/libxslt/xsltconfig.h
 +++ b/libxslt/xsltconfig.h
 @@ -1,6 +1,6 @@
@@ -475,10 +461,10 @@ index b4cac6d..739515d 100644
   *
   * Copy: See Copyright for the status of this software.
 diff --git a/libxslt/xsltutils.c b/libxslt/xsltutils.c
-index 9565e15..d6b1e98 100644
+index ab981a4..9e9993e 100644
 --- a/libxslt/xsltutils.c
 +++ b/libxslt/xsltutils.c
-@@ -1454,7 +1454,7 @@ xsltSaveResultTo(xmlOutputBufferPtr buf, xmlDocPtr result,
+@@ -1466,7 +1466,7 @@ xsltSaveResultTo(xmlOutputBufferPtr buf, xmlDocPtr result,
  	((style->method == NULL) ||
  	 (!xmlStrEqual(style->method, (const xmlChar *) "xhtml")))) {
          xsltGenericError(xsltGenericErrorContext,
@@ -487,16 +473,16 @@ index 9565e15..d6b1e98 100644
          return(-1);
      }
  
-@@ -1767,7 +1767,7 @@ xsltSaveResultToString(xmlChar **doc_txt_ptr, int * doc_txt_len,
+@@ -1794,7 +1794,7 @@ xsltSaveResultToString(xmlChar **doc_txt_ptr, int * doc_txt_len,
  
  /************************************************************************
-  * 									*
-- * 		Generating profiling informations			*
-+ * 		Generating profiling information			*
-  * 									*
+  *									*
+- *		Generating profiling informations			*
++ *		Generating profiling information			*
+  *									*
   ************************************************************************/
  
-@@ -1875,9 +1875,9 @@ xsltTimestamp(void)
+@@ -1954,9 +1954,9 @@ pretty_templ_match(xsltTemplatePtr templ) {
  /**
   * xsltSaveProfiling:
   * @ctxt:  an XSLT context
@@ -508,16 +494,16 @@ index 9565e15..d6b1e98 100644
   */
  void
  xsltSaveProfiling(xsltTransformContextPtr ctxt, FILE *output) {
-@@ -1970,7 +1970,7 @@ xsltSaveProfiling(xsltTransformContextPtr ctxt, FILE *output) {
+@@ -2153,7 +2153,7 @@ xsltSaveProfiling(xsltTransformContextPtr ctxt, FILE *output) {
  
  /************************************************************************
-  * 									*
-- * 		Fetching profiling informations				*
-+ * 		Fetching profiling information				*
-  * 									*
+  *									*
+- *		Fetching profiling informations				*
++ *		Fetching profiling information				*
+  *									*
   ************************************************************************/
  
-@@ -1979,8 +1979,8 @@ xsltSaveProfiling(xsltTransformContextPtr ctxt, FILE *output) {
+@@ -2162,8 +2162,8 @@ xsltSaveProfiling(xsltTransformContextPtr ctxt, FILE *output) {
   * @ctxt:  a transformation context
   *
   * This function should be called after the transformation completed
@@ -529,7 +515,7 @@ index 9565e15..d6b1e98 100644
   * <profile>
   * <template rank="1" match="*" name=""
 diff --git a/libxslt/xsltwin32config.h b/libxslt/xsltwin32config.h
-index b70e6f7..d868533 100644
+index c89e1ec..28a1524 100644
 --- a/libxslt/xsltwin32config.h
 +++ b/libxslt/xsltwin32config.h
 @@ -1,7 +1,7 @@
@@ -644,10 +630,10 @@ index 95bb450..315d78b 100644
   * Process a libxslt:test node
   */
 diff --git a/xsltproc/xsltproc.c b/xsltproc/xsltproc.c
-index e978a63..8260a0e 100644
+index 35f37e8..9ec4b76 100644
 --- a/xsltproc/xsltproc.c
 +++ b/xsltproc/xsltproc.c
-@@ -527,7 +527,7 @@ static void usage(const char *name) {
+@@ -538,7 +538,7 @@ static void usage(const char *name) {
      printf("\t--xincludestyle : do XInclude processing on stylesheets\n");
  #endif
      printf("\t--load-trace : print trace of all external entites loaded\n");
@@ -656,4 +642,3 @@ index e978a63..8260a0e 100644
      printf("\nProject libxslt home page: http://xmlsoft.org/XSLT/\n");
      printf("To report bugs and get help: http://xmlsoft.org/XSLT/bugs.html\n");
  }
--- 

@@ -1,20 +1,34 @@
-libxslt (1.1.26-14.1) unstable; urgency=high
+libxslt (1.1.28-2) unstable; urgency=low
 
-  * Non-maintainer upload by the Security Team.
-  * Upload as NMU acknowledged by Aron Xu.
-  * Add patches to fix denial of service vulnerability (CVE-2012-6139)
-    (Closes: #703933)
+  * debian/patches/000[4-8].patch:
+    Upstream post release patches.
 
- -- Salvatore Bonaccorso <carnil@debian.org>  Tue, 26 Mar 2013 20:31:18 +0100
+ -- Aron Xu <aron@debian.org>  Thu, 01 Aug 2013 13:55:48 +0800
 
-libxslt (1.1.26-14) unstable; urgency=low
+libxslt (1.1.28-1) experimental; urgency=low
 
-  * Patch to fix three CVEs (Closes: #689422):
-    - CVE-2012-2870 by Daniel Veillard and Chris Evans
-    - CVE-2012-2871 by Daniel Veillard
-    - CVE-2012-2893 by Chris Evans
+  [ YunQiang Su ]
+  * Imported Upstream version 1.1.28
+  * Workaround xsltMaxVars version number (Closes: #698955)
+  * Refresh patches
+  * Correct email address of YunQiang Su
+  * Mark libxslt1-dev as Multi-Arch: same (Closes: #689091)
 
- -- Aron Xu <aron@debian.org>  Tue, 02 Oct 2012 23:53:39 +0800
+  [ Aron Xu ]
+  * Use canonical VCS-* fields.
+  * Remove unused override: python-libxslt1-dbg: hardening-no-relro
+
+ -- Aron Xu <happyaron.xu@gmail.com>  Thu, 01 Aug 2013 13:45:01 +0800
+
+libxslt (1.1.27-1) experimental; urgency=low
+
+  * New upstream release (Closes: #448205, #683353)
+  * debian/rules:
+    + Add hardening flags for dbg package in LDFLAGS (Closes: #681163)
+  * debian/control:
+    - std-ver: 3.9.3 -> 3.9.4, no change required.
+
+ -- Aron Xu <aron@debian.org>  Wed, 03 Oct 2012 00:22:53 +0800
 
 libxslt (1.1.26-13) unstable; urgency=low
 

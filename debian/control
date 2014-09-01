@@ -2,8 +2,8 @@ Source: libxslt
 Section: text
 Priority: optional
 Maintainer: Debian XML/SGML Group <debian-xml-sgml-pkgs@lists.alioth.debian.org>
-Uploaders: Aron Xu <aron@debian.org>, YunQiang Su <wzssyqa@debian.org>
-Standards-Version: 3.9.3
+Uploaders: Aron Xu <aron@debian.org>, YunQiang Su <wzssyqa@gmail.com>
+Standards-Version: 3.9.4
 Build-Depends:
  debhelper (>= 9),
  libxml2-dev (>= 2.6.27),
@@ -14,8 +14,8 @@ Build-Depends:
  binutils (>= 2.14.90.0.7),
  perl
 Homepage: http://xmlsoft.org/xslt/
-Vcs-Git: git://git.debian.org/debian-xml-sgml/libxslt.git
-Vcs-Browser: http://git.debian.org/?p=debian-xml-sgml/libxslt.git
+Vcs-Git: git://anonscm.debian.org/debian-xml-sgml/libxslt.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=debian-xml-sgml/libxslt.git
 
 Package: libxslt1.1
 Section: libs
@@ -37,6 +37,7 @@ Description: XSLT 1.0 processing library - runtime library
 Package: libxslt1-dev
 Section: libdevel
 Architecture: any
+Multi-Arch: same
 Provides: libxslt-dev
 Depends:
  libxslt1.1 (= ${binary:Version}),

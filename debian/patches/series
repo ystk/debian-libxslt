@@ -1,10 +1,8 @@
 0001-patch-xslt-config-to-add-private-libraries.patch
 0002-fix-autoconf-automake.patch
-0003-code-fix-and-docs-modification.patch
-0004-fix-typo.patch
-0005-cve-2012-2825.patch
-0006-cve-2012-2870.patch
-0007-Fix-default-template-processing-on-namespace-nodes.patch
-0008-Fix-a-dictionary-string-usage.patch
-0009-Fix-crash-with-empty-xsl-key-match-attribute.patch
-0010-Crash-when-passing-an-uninitialized-variable-to-docu.patch
+0003-fix-typo.patch
+0004-Adding-doc-update-related-to-1.1.28.patch
+0005-Fix-a-couple-of-places-where-f-printf-parameters-wer.patch
+0006-Initialize-pseudo-random-number-generator-with-curre.patch
+0007-EXSLT-function-str-replace-is-broken-as-is.patch
+0008-Fix-quoting-of-xlocale-test-program-in-configure.in.patch

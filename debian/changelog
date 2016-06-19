@@ -1,3 +1,21 @@
+libxslt (1.1.28-2+deb8u1) jessie-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Fix for type confusion in preprocessing attributes (CVE-2015-7995)
+    (Closes: #802971)
+  * Always initialize EXSLT month and day to 1
+  * Fix use-after-free in xsltDocumentFunctionLoadDocument
+  * Fix xsltNumberFormatGetMultipleLevel (CVE-2016-1683)
+  * Round xsl:number values to nearest integer
+  * Handle negative xsl:number values
+  * Lower bound for format token "a"
+  * Lower and upper bound for format token "i" (CVE-2016-1684)
+  * Fix double free in libexslt hash functions
+  * Fix buffer overflow in exsltDateFormat
+  * Fix OOB heap read in xsltExtModuleRegisterDynamic
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 18 Jun 2016 19:27:31 +0200
+
 libxslt (1.1.28-2) unstable; urgency=low
 
   * debian/patches/000[4-8].patch:

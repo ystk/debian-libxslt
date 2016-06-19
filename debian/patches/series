@@ -6,3 +6,14 @@
 0006-Initialize-pseudo-random-number-generator-with-curre.patch
 0007-EXSLT-function-str-replace-is-broken-as-is.patch
 0008-Fix-quoting-of-xlocale-test-program-in-configure.in.patch
+0009-Fix-for-type-confusion-in-preprocessing-attributes.patch
+0010-Always-initialize-EXSLT-month-and-day-to-1.patch
+0011-Fix-use-after-free-in-xsltDocumentFunctionLoadDocume.patch
+0012-Fix-xsltNumberFormatGetMultipleLevel.patch
+0013-Round-xsl-number-values-to-nearest-integer.patch
+0014-Handle-negative-xsl-number-values.patch
+0015-Lower-bound-for-format-token-a.patch
+0016-Lower-and-upper-bound-for-format-token-i.patch
+0017-Fix-double-free-in-libexslt-hash-functions.patch
+0018-Fix-buffer-overflow-in-exsltDateFormat.patch
+0019-Fix-OOB-heap-read-in-xsltExtModuleRegisterDynamic.patch

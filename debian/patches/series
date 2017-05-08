@@ -18,3 +18,4 @@
 0018-Fix-buffer-overflow-in-exsltDateFormat.patch
 0019-Fix-OOB-heap-read-in-xsltExtModuleRegisterDynamic.patch
 0020-Fix-heap-overread-in-xsltFormatNumberConversion.patch
+0021-Check-for-integer-overflow-in-xsltAddTextString.patch

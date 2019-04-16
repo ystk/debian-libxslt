@@ -1,3 +1,13 @@
+libxslt (1.1.28-2+deb8u4) jessie-security; urgency=high
+
+  * CVE-2019-11068: Prevent a bypass of a protection mechanisms in the
+    xsltCheckRead and xsltCheckWrite routines that permit access upon receiving
+    a -1 error code; xsltCheckRead returned -1 for a specially-crafted URL that
+    is not actually invalid and the attacker was subsequently authenticated.
+    (Closes: #926895)
+
+ -- Chris Lamb <lamby@debian.org>  Mon, 15 Apr 2019 16:56:54 +0100
+
 libxslt (1.1.28-2+deb8u3) jessie; urgency=medium
 
   * Non-maintainer upload.

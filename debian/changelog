@@ -1,3 +1,26 @@
+libxslt (1.1.28-2+deb8u5) jessie-security; urgency=high
+
+  * Non-maintainer upload by the LTS team.
+  * Fix CVE-2016-4610:
+    Invalid memory access leading to DoS at exsltDynMapFunction. libxslt allows
+    remote attackers to cause a denial of service (memory corruption) or
+    possibly have unspecified other impact via unknown vectors.
+  * Fix CVE-2016-4609:
+    Out-of-bounds read at xmlGetLineNoInternal()
+    libxslt allows remote attackers to cause a denial of service (memory
+    corruption) or possibly have unspecified other impact via unknown vectors.
+  * Fix CVE-2019-13117:
+    An xsl:number with certain format strings could lead to an uninitialized
+    read in xsltNumberFormatInsertNumbers. This could allow an attacker to
+    discern whether a byte on the stack contains the characters A, a, I, i, or
+    0, or any other character.
+  * Fix CVE-2019-13118:
+    A type holding grouping characters of an xsl:number instruction was too
+    narrow and an invalid character/length combination could be passed to
+    xsltNumberFormatDecimal, leading to a read of uninitialized stack data.
+
+ -- Markus Koschany <apo@debian.org>  Mon, 22 Jul 2019 14:28:55 +0200
+
 libxslt (1.1.28-2+deb8u4) jessie-security; urgency=high
 
   * CVE-2019-11068: Prevent a bypass of a protection mechanisms in the

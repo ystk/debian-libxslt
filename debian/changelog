@@ -1,3 +1,14 @@
+libxslt (1.1.28-2+deb8u6) jessie-security; urgency=high
+
+  * Non-maintainer upload by the LTS team.
+  * Fix CVE-2019-18197:
+    In xsltCopyText in transform.c, a pointer variable is not reset under
+    certain circumstances. If the relevant memory area happened to be freed and
+    reused in a certain way, a bounds check could fail and memory outside a
+    buffer could be written to, or uninitialized data could be disclosed.
+
+ -- Markus Koschany <apo@debian.org>  Sun, 27 Oct 2019 17:44:26 +0100
+
 libxslt (1.1.28-2+deb8u5) jessie-security; urgency=high
 
   * Non-maintainer upload by the LTS team.

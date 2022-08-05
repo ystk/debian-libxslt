@@ -1,3 +1,14 @@
+libxslt (1.1.28-2+deb8u7) jessie-security; urgency=high
+
+  * CVE-2019-5815: Type confusion in xsltNumberFormatGetMultipleLevel prior to
+    libxslt 1.1.33 could allow attackers to potentially exploit heap corruption
+    via crafted XML data.
+  * CVE-2021-30560: Use after free in Blink XSLT in Google Chrome prior to
+    91.0.4472.164 allowed a remote attacker to potentially exploit heap
+    corruption via a crafted HTML page.
+
+ -- Chris Lamb <lamby@debian.org>  Fri, 05 Aug 2022 08:17:27 -0700
+
 libxslt (1.1.28-2+deb8u6) jessie-security; urgency=high
 
   * Non-maintainer upload by the LTS team.

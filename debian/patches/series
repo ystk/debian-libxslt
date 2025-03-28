@@ -27,3 +27,5 @@ CVE-2019-13118.patch
 CVE-2019-18197.patch
 CVE-2019-5815.patch
 CVE-2021-30560.patch
+0001-CVE-2024-55549-Fix-UAF-related-to-excluded-namespace.patch
+0002-CVE-2025-24855-Fix-use-after-free-of-XPath-context-n.patch

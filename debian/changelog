@@ -1,3 +1,11 @@
+libxslt (1.1.28-2+deb8u8) jessie-security; urgency=medium
+
+  * Non-maintainer upload by the ELTS Team.
+  * CVE-2024-55549: Use-after-free related to excluded namespaces
+  * CVE-2025-24855: Use-after-free of XPath context node
+
+ -- Adrian Bunk <bunk@debian.org>  Thu, 27 Mar 2025 11:51:08 +0200
+
 libxslt (1.1.28-2+deb8u7) jessie-security; urgency=high
 
   * CVE-2019-5815: Type confusion in xsltNumberFormatGetMultipleLevel prior to
